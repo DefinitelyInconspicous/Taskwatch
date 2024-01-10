@@ -17,42 +17,47 @@ struct theTask: Identifiable {
 struct ContentView: View {
     @State var taskHour: Int
     @State var taskMin: Int
-    func taskIsHour(time: Int) {
+    @State var taskTime: String
+    func taskIsHour(time: Int) -> String {
         taskHour = Int(time / 60)
-        taskMin = (time % 60)
-        return
+        taskMin = Int(time % 60)
+        taskTime = String(taskHour) + " h " + String(taskMin) + " min"
+        return taskTime
+        
     }
     var body: some View {
         @State var taskList: [theTask] = [
             theTask(taskName: "Do Homework", taskDuration: 15, taskDesc: "Math worksheet 1", taskTimeElapsed: 0),
             
-            theTask(taskName: "Clean my room", taskDuration: 60, taskDesc: "Clean table, bed and cabinet", taskTimeElapsed: 0),
+            theTask(taskName: "Clean my room", taskDuration: 75, taskDesc: "Clean table, bed and cabinet", taskTimeElapsed: 0),
         
         ]
-        NavigationView {
+        NavigationStack {
             List {
                 ForEach($taskList, id: \.id) { currentTask in
-                    
-                    HStack {
-                        Text(currentTask.taskName.wrappedValue)
-                        Spacer()
-                        if currentTask.taskDuration.wrappedValue < 60 {
-                            Text(String(currentTask.taskDuration.wrappedValue) + " min")
-                        }
-                        else {
-                            taskIsHour(time: currentTask.taskDuration.wrappedValue)
-                           
-                            Text(String(taskHour) + " h" + String(taskMin) + " min")
+                    NavigationLink {
+                        TaskView(taskName: currentTask.taskName)
+                    } label: {
+                        HStack {
+                            Text(currentTask.taskName.wrappedValue)
+                            Spacer()
+                            if currentTask.taskDuration.wrappedValue < 60 {
+                                Text(String(currentTask.taskDuration.wrappedValue) + " min")
+                            }
+                            else {
+                                Text(taskIsHour(time: currentTask.taskDuration.wrappedValue))
+                            }
                         }
                     }
                 }
             }
             .navigationTitle("Taskwatch")
+            .navigationBarTitleDisplayMode(.large)
         }
         .padding()
     }
 }
 
 #Preview {
-    ContentView(taskHour: 0, taskMin: 0)
+    ContentView(taskHour: 0, taskMin: 0, taskTime: "")
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct TaskwatchApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(taskHour: 0, taskMin: 0, taskTime: "")
         }
     }
 }
