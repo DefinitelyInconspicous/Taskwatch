@@ -37,7 +37,6 @@
 		8117514B2B4D2900008E41E4 = {
 			isa = PBXGroup;
 			children = (
-				81C87D3A2B4E75C50051A1A1 /* TaskView.swift */,
 				811751562B4D2900008E41E4 /* Taskwatch */,
 				811751552B4D2900008E41E4 /* Products */,
 			);
@@ -54,6 +53,7 @@
 		811751562B4D2900008E41E4 /* Taskwatch */ = {
 			isa = PBXGroup;
 			children = (
+				81C87D3A2B4E75C50051A1A1 /* TaskView.swift */,
 				811751572B4D2900008E41E4 /* TaskwatchApp.swift */,
 				811751592B4D2900008E41E4 /* ContentView.swift */,
 				8117515B2B4D2903008E41E4 /* Assets.xcassets */,

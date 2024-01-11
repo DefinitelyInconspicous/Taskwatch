@@ -36,7 +36,7 @@ struct ContentView: View {
             List {
                 ForEach($taskList, id: \.id) { currentTask in
                     NavigationLink {
-                        TaskView(taskName: currentTask.taskName)
+                        TaskView(taskName: currentTask.taskName, taskDesc: currentTask.taskDesc)
                     } label: {
                         HStack {
                             Text(currentTask.taskName.wrappedValue)
@@ -53,6 +53,13 @@ struct ContentView: View {
             }
             .navigationTitle("Taskwatch")
             .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                Button {
+                    
+                } label: {
+                    
+                }
+            }
         }
         .padding()
     }
